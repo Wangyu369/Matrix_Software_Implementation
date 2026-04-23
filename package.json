@@ -1,0 +1,24 @@
+{
+  "name": "matrix_software_implementation",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "jest"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Wangyu369/Matrix_Software_Implementation.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "bugs": {
+    "url": "https://github.com/Wangyu369/Matrix_Software_Implementation/issues"
+  },
+  "homepage": "https://github.com/Wangyu369/Matrix_Software_Implementation#readme",
+  "devDependencies": {
+    "jest": "^30.3.0"
+  }
+}
