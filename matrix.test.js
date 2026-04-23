@@ -72,4 +72,18 @@ describe('Matrix Operations', () => {
     const A = [[1, 2, 3], [4, 5, 6]];
     expect(() => inverseMatrix(A)).toThrow('Matrix must be square');
   });
+
+  test('functions should validate matrix inputs', () => {
+    const invalidMatrix = [[1, 'a'], [3, 4]];
+    expect(() => addMatrices(invalidMatrix, [[1, 2], [3, 4]])).toThrow('Matrix A elements must be valid numbers');
+    expect(() => multiplyMatrices(invalidMatrix, [[1], [2]])).toThrow('Matrix A elements must be valid numbers');
+    expect(() => transposeMatrix(invalidMatrix)).toThrow('Matrix A elements must be valid numbers');
+    expect(() => determinant(invalidMatrix)).toThrow('Matrix A elements must be valid numbers');
+    expect(() => inverseMatrix(invalidMatrix)).toThrow('Matrix A elements must be valid numbers');
+  });
+
+  test('functions should reject empty matrices', () => {
+    expect(() => addMatrices([], [[1, 2]])).toThrow('Matrix A must be a non-empty array');
+    expect(() => transposeMatrix([[]])).toThrow('Matrix A rows must not be empty');
+  });
 });

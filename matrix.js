@@ -2,7 +2,29 @@
 // Dev branch update
 // Feature branch update
 
+function validateMatrix(matrix, name = 'Matrix') {
+  if (!Array.isArray(matrix) || matrix.length === 0) {
+    throw new Error(`${name} must be a non-empty array`);
+  }
+  const rowLength = matrix[0].length;
+  if (rowLength === 0) {
+    throw new Error(`${name} rows must not be empty`);
+  }
+  for (let i = 0; i < matrix.length; i++) {
+    if (!Array.isArray(matrix[i]) || matrix[i].length !== rowLength) {
+      throw new Error(`${name} must be a rectangular array`);
+    }
+    for (let j = 0; j < matrix[i].length; j++) {
+      if (typeof matrix[i][j] !== 'number' || isNaN(matrix[i][j])) {
+        throw new Error(`${name} elements must be valid numbers`);
+      }
+    }
+  }
+}
+
 function addMatrices(A, B) {
+  validateMatrix(A, 'Matrix A');
+  validateMatrix(B, 'Matrix B');
   if (A.length !== B.length || A[0].length !== B[0].length) {
     throw new Error('Matrices must have the same dimensions');
   }
@@ -10,6 +32,8 @@ function addMatrices(A, B) {
 }
 
 function multiplyMatrices(A, B) {
+  validateMatrix(A, 'Matrix A');
+  validateMatrix(B, 'Matrix B');
   if (A[0].length !== B.length) {
     throw new Error('Number of columns in A must equal number of rows in B');
   }
@@ -27,10 +51,12 @@ function multiplyMatrices(A, B) {
 }
 
 function transposeMatrix(A) {
+  validateMatrix(A, 'Matrix A');
   return A[0].map((_, colIndex) => A.map(row => row[colIndex]));
 }
 
 function determinant(A) {
+  validateMatrix(A, 'Matrix A');
   if (A.length !== A[0].length) {
     throw new Error('Matrix must be square');
   }
@@ -46,6 +72,7 @@ function determinant(A) {
 }
 
 function inverseMatrix(A) {
+  validateMatrix(A, 'Matrix A');
   if (A.length !== A[0].length) {
     throw new Error('Matrix must be square');
   }
