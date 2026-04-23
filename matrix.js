@@ -1,4 +1,5 @@
 // matrix.js - Simple matrix operations
+// Feature branch update
 
 function addMatrices(A, B) {
   if (A.length !== B.length || A[0].length !== B[0].length) {
