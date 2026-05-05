@@ -152,9 +152,10 @@ jobs:
           echo "Checking live URL: $DEPLOY_URL"
           STATUS=$(curl -s -o /dev/null -w "%{http_code}" "$DEPLOY_URL")
           echo "HTTP Status: $STATUS"
-          if [ "$STATUS" -eq 200 ]; then
-            echo "✅ Smoke test passed — site returned 200 OK"
+          if [ "$STATUS" -eq 200 ] || [ "$STATUS" -eq 401 ]; then
+            echo "✅ Smoke test passed — site is reachable (HTTP $STATUS)"
+            echo "ℹ️  401 = Vercel Authentication is ON (site is live but protected)"
           else
-            echo "❌ Smoke test failed — site returned $STATUS"
+            echo "❌ Smoke test failed — site returned $STATUS (site may be down)"
             exit 1
           fi
